@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tteest/Widgets/Bottom_nav.dart';
 import 'package:tteest/Widgets/floating_button.dart';
-import 'package:tteest/logic/Enum_screens.dart';
-import 'package:tteest/logic/stack.dart';
-import 'package:tteest/screens/Settings.dart';
+import 'package:tteest/model/enum_screens.dart';
+import 'package:tteest/presenter/bottom_bar_manager.dart';
+import 'package:tteest/presenter/texts_presenter.dart';
+import 'package:tteest/widgets/bottom_navigation_bar.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -11,23 +11,23 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  stack_screen stackk = new stack_screen();
+  TextsPresenter _textspresenter = new TextsPresenter();
+  BottomBarManager bottomBarManager = new BottomBarManager();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () =>
-        stackk.remove_nav(context)
-
-      ,
+      onWillPop: () => bottomBarManager.openPreviousScreen(context),
       child: Scaffold(
+        backgroundColor: Colors.grey,
         body: Container(
           child: Center(
-            child: Text(stackk.screens.toList().toString() +
-                '\n' +
-                stackk.screens.last.toString()),
+            child: Text(_textspresenter.applicationtexts.dashboardScreenTitle),
           ),
         ),
-        bottomNavigationBar: Bottomnav(),
+        bottomNavigationBar: BottomNavigatioBar(
+          context: context,
+          enumScreens: EnumScreens.dashboard,
+        ),
         floatingActionButton: Floatingbutton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),

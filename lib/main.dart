@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tteest/Widgets/Bottom_nav.dart';
 import 'package:tteest/Widgets/floating_button.dart';
-import 'package:tteest/screens/Home.dart';
+import 'package:tteest/screens/home.dart';
+import 'package:tteest/widgets/bottom_navigation_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,9 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: Colors.grey,
         body: Container(),
-
         floatingActionButton: Floatingbutton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: Bottomnav());
+        bottomNavigationBar: BottomNavigatioBar());
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tteest/logic/Enum_screens.dart';
-import 'package:tteest/logic/stack.dart';
-import 'package:tteest/screens/Home.dart';
+import 'package:tteest/presenter/bottom_bar_manager.dart';
 
 class Floatingbutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    BottomBarManager bottomBarManager = new BottomBarManager();
+
     return Container(
       decoration: BoxDecoration(
           color: Colors.black12,
@@ -14,6 +14,7 @@ class Floatingbutton extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(50)),
       child: FloatingActionButton(
+        
         mini: false,
         shape: CircleBorder(),
         backgroundColor: Colors.blueAccent,
@@ -21,14 +22,12 @@ class Floatingbutton extends StatelessWidget {
           Icons.home_repair_service,
           size: 40,
         ),
+        //Hamdy review .. logc needs to be transfered in a separated function
         onPressed: () {
-           stack_screen screen = new stack_screen();
-          screen.check_list(context, screens_enum.home);
-          if (screen.screens.contains(screens_enum.home)) {
-            
-          }else{
-          screen.screens.add(screens_enum.home);
-          }
+          //Hamdy review .. rename it to stack manager
+          //Hamdy review .. transfer logic in stack_screen in a function
+
+          bottomBarManager.onFloatingButtonTap(context);
         },
       ),
     );
